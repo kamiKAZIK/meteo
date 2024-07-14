@@ -67,12 +67,3 @@ resource "aws_iam_role_policy_attachment" "tfc_policy_attachment" {
   role       = aws_iam_role.tfc_role.name
   policy_arn = aws_iam_policy.tfc_policy.arn
 }
-
-resource "aws_s3_bucket" "aparatus-timeseries-data-prod" {
-  bucket = "eucentral1-aparatus-timeseries-data-prod"
-
-  tags = {
-    Name        = "Aparatus timeseries data bucket for PROD"
-    Environment = "PROD"
-  }
-}
