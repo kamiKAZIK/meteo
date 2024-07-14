@@ -6,6 +6,7 @@ terraform {
     }
   }
   cloud {
+    organization = "aparatus"
     workspaces {
       name = "infra"
     }
