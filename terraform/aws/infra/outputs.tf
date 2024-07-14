@@ -16,14 +16,17 @@ output "iot_thing_esp32_default_client_id" {
 output "iot_certificate_esp32_device_certificate" {
   description = "IOT device certificate for esp32"
   value       = aws_iot_certificate.esp32.certificate_pem
+  sensitive = true
 }
 
 output "iot_certificate_esp32_private_key" {
   description = "IOT pricate key for esp32"
   value       = aws_iot_certificate.esp32.private_key
+  sensitive = true
 }
 
 output "iot_certificate_esp32_public_key" {
   description = "IOT device certificate for esp32"
   value       = aws_iot_certificate.esp32.public_key
+  sensitive = true
 }
