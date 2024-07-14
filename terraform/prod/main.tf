@@ -43,6 +43,31 @@ resource "aws_iam_role" "tfc_role" {
 EOF
 }
 
+resource "aws_iam_policy" "tfc_policy" {
+  name        = "tfc-policy"
+  description = "TFC run policy"
+
+  policy = <<EOF
+{
+ "Version": "2012-10-17",
+ "Statement": [
+   {
+     "Effect": "Allow",
+     "Action": [
+       "ec2:*"
+     ],
+     "Resource": "*"
+   }
+ ]
+}
+EOF
+}
+
+resource "aws_iam_role_policy_attachment" "tfc_policy_attachment" {
+  role       = aws_iam_role.tfc_role.name
+  policy_arn = aws_iam_policy.tfc_policy.arn
+}
+
 resource "aws_s3_bucket" "aparatus-timeseries-data-prod" {
   bucket = "eucentral1-aparatus-timeseries-data-prod"
 
