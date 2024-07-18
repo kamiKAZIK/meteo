@@ -7,7 +7,8 @@ data "aws_iam_policy_document" "meteo_assume_role_policy" {
     principals {
       type        = "Service"
       identifiers = [
-        "iot.amazonaws.com"
+        "iot.amazonaws.com",
+        "s3.amazonaws.com"
       ]
     }
   }
