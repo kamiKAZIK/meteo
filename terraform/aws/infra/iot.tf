@@ -67,3 +67,15 @@ resource "aws_iot_policy_attachment" "esp32_iot_policy_attachment" {
   policy = aws_iot_policy.esp32_iot_policy.name
   target = aws_iot_certificate.esp32_iot_certificate.arn
 }
+
+resource "aws_iot_topic_rule" "esp32_iot_topic_rule" {
+  name        = "esp32_sensor_readings"
+  enabled     = true
+  sql         = "SELECT * FROM '${aws_iot_thing.esp32_iot_thing.default_client_id}/sensor-readings'"
+  sql_version = "2016-03-23"
+
+  firehose {
+    delivery_stream_name = aws_kinesis_firehose_delivery_stream.meteo_sensor_readings_kinesis_firehose_delivery_stream.name
+    role_arn = aws_iam_role.meteo_iam_role.arn
+  }
+}
