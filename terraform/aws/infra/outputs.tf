@@ -1,6 +1,6 @@
-output "iam_meteo_role_arn" {
+output "meteo_iam_role_arn" {
   description = "Meteo IAM role ARN"
-  value       = aws_iam_role.meteo_role.arn
+  value       = aws_iam_role.meteo_iam_role.arn
 }
 
 # output "s3_meteo_data_arn" {
