@@ -4,12 +4,6 @@ variable "aws_region" {
   description = "AWS region for all resources"
 }
 
-variable "aws_profile" {
-  type        = string
-  default     = "default"
-  description = "AWS profile for all resources"
-}
-
 variable "tfc_aws_audience" {
   type        = string
   default     = "aws.workload.identity"
