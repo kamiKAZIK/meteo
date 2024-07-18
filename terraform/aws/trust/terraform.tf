@@ -5,4 +5,9 @@ terraform {
       version = "~> 4.49.0"
     }
   }
+  backend "s3" {
+    bucket = "eucentral1-aparatus-terraform-state"
+    key    = "meteo"
+    region = "eu-central-1"
+  }
 }
