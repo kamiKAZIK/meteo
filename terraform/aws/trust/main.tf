@@ -55,7 +55,8 @@ data "aws_iam_policy_document" "tfc_policy" {
     effect    = "Allow"
     actions   = [
        "s3:*",
-       "iot:*"
+       "iot:*",
+       "iam:*"
     ]
     resources = [
       "*"
