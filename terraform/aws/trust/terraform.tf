@@ -7,7 +7,7 @@ terraform {
   }
   backend "s3" {
     bucket = "eucentral1-aparatus-terraform-state"
-    key    = "meteo"
+    key    = "meteo/trust"
     region = "eu-central-1"
   }
 }
