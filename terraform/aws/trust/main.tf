@@ -56,7 +56,9 @@ data "aws_iam_policy_document" "tfc_policy" {
     actions   = [
        "s3:*",
        "iot:*",
-       "iam:*"
+       "iam:*",
+       "firehose:*",
+       "glue:*"
     ]
     resources = [
       "*"
