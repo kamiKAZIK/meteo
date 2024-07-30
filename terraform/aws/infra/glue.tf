@@ -1,6 +1,10 @@
+resource "aws_glue_catalog_database" "meteo_glue_catalog_database" {
+  name = "meteo"
+}
+
 resource "aws_glue_catalog_table" "meteo_sensor_readings_glue_catalog_table" {
   name          = "meteo_sensor_readings"
-  database_name = "meteo"
+  database_name = aws_glue_catalog_database.meteo_glue_catalog_database.name
 
   table_type = "EXTERNAL_TABLE"
 
