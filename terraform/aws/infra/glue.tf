@@ -10,7 +10,7 @@ resource "aws_glue_catalog_table" "meteo_sensor_readings_glue_catalog_table" {
   }
 
   storage_descriptor {
-    location      = "s3://${aws_s3_bucket.meteo_s3_bucket_sensor_data.name}/data"
+    location      = "s3://${aws_s3_bucket.meteo_s3_bucket_sensor_data.bucket}/data"
     input_format  = "org.apache.hadoop.hive.ql.io.parquet.MapredParquetInputFormat"
     output_format = "org.apache.hadoop.hive.ql.io.parquet.MapredParquetOutputFormat"
 
