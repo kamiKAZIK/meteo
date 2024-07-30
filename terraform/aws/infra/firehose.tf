@@ -6,8 +6,6 @@ resource "aws_kinesis_firehose_delivery_stream" "meteo_sensor_readings_kinesis_f
     role_arn   = aws_iam_role.meteo_iam_role.arn
     bucket_arn = aws_s3_bucket.meteo_s3_bucket_sensor_data.arn
 
-    buffering_size = 64
-
     dynamic_partitioning_configuration {
       enabled = "true"
     }
