@@ -189,12 +189,12 @@ data "aws_iam_policy_document" "meteo_iot_firehose" {
 
 resource "aws_iam_role" "meteo_firehose" {
   name               = "meteo-firehose"
-  assume_role_policy = aws_iam_policy_document.meteo_firehose_trust.json
+  assume_role_policy = data.aws_iam_policy_document.meteo_firehose_trust.json
 }
 
 resource "aws_iam_policy" "meteo_firehose_s3" {
   name   = "meteo-firehose-s3"
-  policy = aws_iam_policy_document.meteo_firehose_s3.json
+  policy = data.aws_iam_policy_document.meteo_firehose_s3.json
 }
 
 resource "aws_iam_role_policy_attachment" "meteo_firehose_s3" {
@@ -204,12 +204,12 @@ resource "aws_iam_role_policy_attachment" "meteo_firehose_s3" {
 
 resource "aws_iam_role" "meteo_glue" {
   name               = "meteo-glue"
-  assume_role_policy = aws_iam_policy_document.meteo_glue_trust.json
+  assume_role_policy = data.aws_iam_policy_document.meteo_glue_trust.json
 }
 
 resource "aws_iam_policy" "meteo_glue" {
   name   = "meteo-glue"
-  policy = aws_iam_policy_document.meteo_glue.json
+  policy = data.aws_iam_policy_document.meteo_glue.json
 }
 
 resource "aws_iam_role_policy_attachment" "meteo_glue" {
@@ -219,12 +219,12 @@ resource "aws_iam_role_policy_attachment" "meteo_glue" {
 
 resource "aws_iam_role" "meteo_esp32" {
   name               = "meteo-esp32"
-  assume_role_policy = aws_iam_policy_document.meteo_iot_trust.json
+  assume_role_policy = data.aws_iam_policy_document.meteo_iot_trust.json
 }
 
 resource "aws_iam_policy" "meteo_esp32" {
   name   = "meteo-esp32"
-  policy = aws_iam_policy_document.meteo_iot_firehose.json
+  policy = data.aws_iam_policy_document.meteo_iot_firehose.json
 }
 
 resource "aws_iam_role_policy_attachment" "meteo_esp32" {
