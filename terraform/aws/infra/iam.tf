@@ -19,11 +19,10 @@ data "aws_iam_policy_document" "meteo_s3_policy_document" {
   statement {
     effect  = "Allow"
     actions = [
-      "s3:*"
-//      "s3:PutObject",
-//      "s3:GetObject",
-//      "s3:ListBucket",
-//      "s3:PutObjectAcl"
+      "s3:PutObject",
+      "s3:GetObject",
+      "s3:ListBucket",
+      "s3:PutObjectAcl"
     ]
     resources = [
       aws_s3_bucket.meteo_s3_bucket_sensor_data.arn,
@@ -36,15 +35,41 @@ data "aws_iam_policy_document" "meteo_glue_policy_document" {
   statement {
     effect  = "Allow"
     actions = [
-      "glue:*"
-//      "glue:GetTable",
-//      "glue:GetTableVersion",
-//      "glue:GetTableVersions"
+      "glue:GetTable",
+      "glue:GetTableVersion",
+      "glue:GetTableVersions"
     ]
     resources = [
       "arn:aws:glue:eu-central-1:${data.aws_caller_identity.current.account_id}:catalog",
       aws_glue_catalog_database.meteo_glue_catalog_database.arn,
       aws_glue_catalog_table.meteo_sensor_readings_glue_catalog_table.arn
+    ]
+  }
+}
+
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Action": [
+                "firehose:PutRecord",
+                "firehose:PutRecordBatch"
+            ],
+            "Resource": "arn:aws:firehose:eu-central-1:975050052634:deliverystream/meteo-sensor-readings"
+        }
+    ]
+}
+
+data "aws_iam_policy_document" "meteo_firehose_policy_document" {
+  statement {
+    effect  = "Allow"
+    actions = [
+      "firehose:PutRecord",
+      "firehose:PutRecordBatch"
+    ]
+    resources = [
+      aws_kinesis_firehose_delivery_stream.meteo_sensor_readings_kinesis_firehose_delivery_stream.arn
     ]
   }
 }
@@ -64,6 +89,11 @@ resource "aws_iam_policy" "meteo_glue_policy" {
   policy      = data.aws_iam_policy_document.meteo_glue_policy_document.json
 }
 
+resource "aws_iam_policy" "meteo_firehose_policy" {
+  name        = "meteo-glue"
+  policy      = data.aws_iam_policy_document.meteo_firehose_policy_document.json
+}
+
 resource "aws_iam_role_policy_attachment" "meteo_s3_policy_attachment" {
   role       = aws_iam_role.meteo_iam_role.name
   policy_arn = aws_iam_policy.meteo_s3_policy.arn
@@ -72,4 +102,9 @@ resource "aws_iam_role_policy_attachment" "meteo_s3_policy_attachment" {
 resource "aws_iam_role_policy_attachment" "meteo_glue_policy_attachment" {
   role       = aws_iam_role.meteo_iam_role.name
   policy_arn = aws_iam_policy.meteo_glue_policy.arn
+}
+
+resource "aws_iam_role_policy_attachment" "meteo_firehose_policy_attachment" {
+  role       = aws_iam_role.meteo_iam_role.name
+  policy_arn = aws_iam_policy.meteo_firehose_policy.arn
 }
