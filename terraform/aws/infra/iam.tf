@@ -8,7 +8,8 @@ data "aws_iam_policy_document" "meteo_iam_policy_document" {
       identifiers = [
         "iot.amazonaws.com",
         "s3.amazonaws.com",
-        "firehose.amazonaws.com"
+        "firehose.amazonaws.com",
+        "glue.amazonaws.com"
       ]
     }
   }
