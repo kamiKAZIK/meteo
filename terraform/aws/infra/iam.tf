@@ -16,7 +16,7 @@ data "aws_iam_policy_document" "meteo_assume_role_policy_document" {
 }
 
 data "aws_iam_policy_document" "meteo_s3_policy_document" {
-  statement = {
+  statement {
     effect  = "Allow"
     actions = [
       "s3:PutObject",
@@ -31,7 +31,7 @@ data "aws_iam_policy_document" "meteo_s3_policy_document" {
 }
 
 data "aws_iam_policy_document" "meteo_glue_policy_document" {
-  statement = {
+  statement {
     effect  = "Allow"
     actions = [
       "glue:GetTable",
