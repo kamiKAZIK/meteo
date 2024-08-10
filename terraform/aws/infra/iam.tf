@@ -151,7 +151,13 @@ data "aws_iam_policy_document" "meteo_firehose_glue" {
     actions = [
       "glue:GetTable",
       "glue:GetTableVersion",
-      "glue:GetTableVersions"
+      "glue:GetTableVersions",
+
+      "glue:GetDatabases",
+      "glue:GetDatabase",
+      "glue:GetTables",
+      "glue:GetPartitions",
+      "glue:GetPartition"
     ]
     resources = [
       "arn:aws:glue:eu-central-1:${data.aws_caller_identity.current.account_id}:catalog",
