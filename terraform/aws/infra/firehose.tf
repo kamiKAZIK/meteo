@@ -18,7 +18,7 @@ resource "aws_kinesis_firehose_delivery_stream" "meteo_sensor_readings_kinesis_f
           orc_ser_de = {}
         }
       }
-      schema_configuration {
+      schema_configuration = {
         database_name = aws_glue_catalog_table.meteo_sensor_readings_glue_catalog_table.database_name
         role_arn      = aws_iam_role.meteo_iam_role.arn
         table_name    = aws_glue_catalog_table.meteo_sensor_readings_glue_catalog_table.name
