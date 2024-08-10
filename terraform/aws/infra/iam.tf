@@ -127,20 +127,6 @@ data "aws_iam_policy_document" "meteo_iot_trust" {
   }
 }
 
-data "aws_iam_policy_document" "meteo_glue_trust" {
-  statement {
-    actions = [
-      "sts:AssumeRole"
-    ]
-    principals {
-      type        = "Service"
-      identifiers = [
-        "glue.amazonaws.com"
-      ]
-    }
-  }
-}
-
 data "aws_iam_policy_document" "meteo_firehose_s3" {
   statement {
     effect  = "Allow"
@@ -168,6 +154,8 @@ data "aws_iam_policy_document" "meteo_firehose_glue" {
       "glue:GetTableVersions"
     ]
     resources = [
+      "arn:aws:glue:eu-central-1:${data.aws_caller_identity.current.account_id}:catalog",
+      aws_glue_catalog_database.meteo_sensors.arn,
       aws_glue_catalog_table.meteo_readings.arn
     ]
   }
