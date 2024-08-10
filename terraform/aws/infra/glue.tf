@@ -25,11 +25,11 @@ resource "aws_glue_catalog_table" "meteo_sensor_readings_glue_catalog_table" {
       name = "sensor_id"
       type = "string"
     }
-    columns {
+    columns = {
       name = "qualifier"
       type = "int"
     }
-    columns {
+    columns = {
       name = "value"
       type = "double"
     }
