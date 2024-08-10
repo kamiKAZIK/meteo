@@ -35,5 +35,5 @@ output "esp32_iot_certificate_public_key" {
 
 output "meteo_s3_bucket_sensor_data_arn" {
   description = "Meteo sensor data S3 bucket ARN"
-  value       = aws_s3_bucket.meteo_s3_bucket_sensor_data.arn
+  value       = aws_s3_bucket.meteo_sensor_data.arn
 }
