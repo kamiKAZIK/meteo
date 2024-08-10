@@ -19,10 +19,12 @@ data "aws_iam_policy_document" "meteo_s3_policy_document" {
   statement {
     effect  = "Allow"
     actions = [
-      "s3:PutObject",
+      "s3:AbortMultipartUpload",
+      "s3:GetBucketLocation",
       "s3:GetObject",
       "s3:ListBucket",
-      "s3:PutObjectAcl"
+      "s3:ListBucketMultipartUploads",
+      "s3:PutObject"
     ]
     resources = [
       aws_s3_bucket.meteo_s3_bucket_sensor_data.arn,
