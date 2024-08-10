@@ -7,15 +7,15 @@ resource "aws_kinesis_firehose_delivery_stream" "meteo_sensor_readings_kinesis_f
     buffering_size      = 64
     prefix              = "data/year=!{timestamp:yyyy}/month=!{timestamp:MM}/day=!{timestamp:dd}/"
     error_output_prefix = "errors/year=!{timestamp:yyyy}/month=!{timestamp:MM}/day=!{timestamp:dd}/!{firehose:error-output-type}/"
-    data_format_conversion_configuration = {
-      input_format_configuration = {
-        deserializer = {
-          hive_json_ser_de = {}
+    data_format_conversion_configuration {
+      input_format_configuration {
+        deserializer {
+          hive_json_ser_de {}
         }
       }
-      output_format_configuration = {
-        serializer = {
-          orc_ser_de = {}
+      output_format_configuration {
+        serializer {
+          parquet_ser_de {}
         }
       }
       schema_configuration = {
