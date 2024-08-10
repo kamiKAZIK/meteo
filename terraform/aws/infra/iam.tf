@@ -19,14 +19,15 @@ data "aws_iam_policy_document" "meteo_s3_policy_document" {
   statement {
     effect  = "Allow"
     actions = [
-      "s3:PutObject",
-      "s3:GetObject",
-      "s3:ListBucket",
-      "s3:PutObjectAcl"
+      "s3:*"
+//      "s3:PutObject",
+//      "s3:GetObject",
+//      "s3:ListBucket",
+//      "s3:PutObjectAcl"
     ]
     resources = [
       aws_s3_bucket.meteo_s3_bucket_sensor_data.arn,
-      "${aws_s3_bucket.meteo_s3_bucket_sensor_data.arn}/*"
+      "${aws_s3_bucket.meteo_s3_bucket_sensor_data.arn}"
     ]
   }
 }
@@ -35,9 +36,10 @@ data "aws_iam_policy_document" "meteo_glue_policy_document" {
   statement {
     effect  = "Allow"
     actions = [
-      "glue:GetTable",
-      "glue:GetTableVersion",
-      "glue:GetTableVersions"
+      "glue:*"
+//      "glue:GetTable",
+//      "glue:GetTableVersion",
+//      "glue:GetTableVersions"
     ]
     resources = [
       "arn:aws:glue:eu-central-1:${data.aws_caller_identity.current.account_id}:catalog",
