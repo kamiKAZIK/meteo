@@ -35,7 +35,7 @@ data "aws_iam_policy_document" "esp32_iam_policy_document" {
       "iot:Publish"
     ]
     resources = [
-      "arn:aws:iot:eu-central-1:${data.aws_caller_identity.current.account_id}:topic/$${iot:Connection.Thing.ThingName}/readings"
+      "arn:aws:iot:eu-central-1:${data.aws_caller_identity.current.account_id}:topic/$${iot:Connection.Thing.ThingName}/sensor-readings"
     ]
   }
   statement {
@@ -44,7 +44,7 @@ data "aws_iam_policy_document" "esp32_iam_policy_document" {
       "iot:Subscribe"
     ]
     resources = [
-      "arn:aws:iot:eu-central-1:${data.aws_caller_identity.current.account_id}:topicfilter/$${iot:Connection.Thing.ThingName}/readings"
+      "arn:aws:iot:eu-central-1:${data.aws_caller_identity.current.account_id}:topicfilter/$${iot:Connection.Thing.ThingName}/sensor-readings"
     ]
   }
   statement {
@@ -73,7 +73,6 @@ resource "aws_iot_topic_rule" "esp32_iot_topic_rule" {
   enabled     = true
   sql         = "SELECT * FROM '${aws_iot_thing.esp32_iot_thing.default_client_id}/sensor-readings'"
   sql_version = "2016-03-23"
-
   firehose {
     delivery_stream_name = aws_kinesis_firehose_delivery_stream.meteo_sensor_readings_kinesis_firehose_delivery_stream.name
     role_arn = aws_iam_role.meteo_iam_role.arn
