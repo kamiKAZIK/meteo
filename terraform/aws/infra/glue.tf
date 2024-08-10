@@ -21,7 +21,7 @@ resource "aws_glue_catalog_table" "meteo_sensor_readings_glue_catalog_table" {
         "serialization.format" = 1
       }
     }
-    columns {
+    columns = {
       name = "sensor_id"
       type = "string"
     }
