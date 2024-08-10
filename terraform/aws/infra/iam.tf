@@ -25,7 +25,8 @@ data "aws_iam_policy_document" "meteo_s3_policy_document" {
       "s3:PutObjectAcl"
     ]
     resources = [
-      aws_s3_bucket.meteo_s3_bucket_sensor_data.arn
+      aws_s3_bucket.meteo_s3_bucket_sensor_data.arn,
+      "${aws_s3_bucket.meteo_s3_bucket_sensor_data.arn}/*"
     ]
   }
 }
