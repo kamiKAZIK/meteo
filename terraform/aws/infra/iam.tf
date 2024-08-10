@@ -47,20 +47,6 @@ data "aws_iam_policy_document" "meteo_glue_policy_document" {
   }
 }
 
-{
-    "Version": "2012-10-17",
-    "Statement": [
-        {
-            "Effect": "Allow",
-            "Action": [
-                "firehose:PutRecord",
-                "firehose:PutRecordBatch"
-            ],
-            "Resource": "arn:aws:firehose:eu-central-1:975050052634:deliverystream/meteo-sensor-readings"
-        }
-    ]
-}
-
 data "aws_iam_policy_document" "meteo_firehose_policy_document" {
   statement {
     effect  = "Allow"
