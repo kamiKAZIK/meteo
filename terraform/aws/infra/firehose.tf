@@ -53,7 +53,7 @@ resource "aws_kinesis_firehose_delivery_stream" "meteo_sensor_readings" {
       }
       schema_configuration {
         database_name = aws_glue_catalog_table.meteo_readings.database_name
-        role_arn      = aws_iam_role.meteo_glue.arn
+        role_arn      = aws_iam_role.meteo_firehose.arn
         table_name    = aws_glue_catalog_table.meteo_readings.name
       }
     }

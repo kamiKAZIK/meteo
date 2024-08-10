@@ -159,7 +159,7 @@ data "aws_iam_policy_document" "meteo_firehose_s3" {
   }
 }
 
-data "aws_iam_policy_document" "meteo_glue" {
+data "aws_iam_policy_document" "meteo_firehose_glue" {
   statement {
     effect  = "Allow"
     actions = [
@@ -168,9 +168,16 @@ data "aws_iam_policy_document" "meteo_glue" {
       "glue:GetTableVersions"
     ]
     resources = [
-      "arn:aws:glue:eu-central-1:${data.aws_caller_identity.current.account_id}:catalog",
-      aws_glue_catalog_database.meteo_sensors.arn,
       aws_glue_catalog_table.meteo_readings.arn
+    ]
+  }
+  statement {
+    effect  = "Allow"
+    actions = [
+      "glue:GetSchemaVersion"
+    ]
+    resources = [
+      "*"
     ]
   }
 }
@@ -202,19 +209,14 @@ resource "aws_iam_role_policy_attachment" "meteo_firehose_s3" {
   policy_arn = aws_iam_policy.meteo_firehose_s3.arn
 }
 
-resource "aws_iam_role" "meteo_glue" {
-  name               = "meteo-glue"
-  assume_role_policy = data.aws_iam_policy_document.meteo_glue_trust.json
+resource "aws_iam_policy" "meteo_firehose_glue" {
+  name   = "meteo-firehose-glue"
+  policy = data.aws_iam_policy_document.meteo_firehose_glue.json
 }
 
-resource "aws_iam_policy" "meteo_glue" {
-  name   = "meteo-glue"
-  policy = data.aws_iam_policy_document.meteo_glue.json
-}
-
-resource "aws_iam_role_policy_attachment" "meteo_glue" {
-  role       = aws_iam_role.meteo_glue.name
-  policy_arn = aws_iam_policy.meteo_glue.arn
+resource "aws_iam_role_policy_attachment" "meteo_firehose_glue" {
+  role       = aws_iam_role.meteo_firehose.name
+  policy_arn = aws_iam_policy.meteo_firehose_glue.arn
 }
 
 resource "aws_iam_role" "meteo_esp32" {
