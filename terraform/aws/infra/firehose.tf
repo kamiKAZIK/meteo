@@ -21,9 +21,9 @@ resource "aws_kinesis_firehose_delivery_stream" "meteo_sensor_readings_kinesis_f
         }
       }
       schema_configuration {
-        database_name = aws_glue_catalog_table.meteo_sensor_readings_glue_catalog_table.database_name
+        database_name = aws_glue_catalog_table.meteo_readings.database_name
         role_arn      = aws_iam_role.meteo_iam_role.arn
-        table_name    = aws_glue_catalog_table.meteo_sensor_readings_glue_catalog_table.name
+        table_name    = aws_glue_catalog_table.meteo_readings.name
       }
     }
   }
@@ -52,7 +52,7 @@ resource "aws_kinesis_firehose_delivery_stream" "meteo_sensor_readings" {
         }
       }
       schema_configuration {
-        database_name = aws_glue_catalog_table.meteo_sensors.database_name
+        database_name = aws_glue_catalog_table.meteo_readings.database_name
         role_arn      = aws_iam_role.meteo_glue.arn
         table_name    = aws_glue_catalog_table.meteo_readings.name
       }
