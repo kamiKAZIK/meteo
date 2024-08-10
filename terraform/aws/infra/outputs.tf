@@ -1,11 +1,7 @@
+/*
 output "meteo_iam_role_arn" {
   description = "Meteo IAM role ARN"
   value       = aws_iam_role.meteo_iam_role.arn
-}
-
-output "meteo_s3_bucket_sensor_data_arn" {
-  description = "Meteo sensor data S3 bucket ARN"
-  value       = aws_s3_bucket.meteo_s3_bucket_sensor_data.arn
 }
 
 output "esp32_iot_thing_arn" {
@@ -34,4 +30,10 @@ output "esp32_iot_certificate_public_key" {
   description = "ESP32 IOT public key"
   value       = aws_iot_certificate.esp32_iot_certificate.public_key
   sensitive = true
+}
+*/
+
+output "meteo_s3_bucket_sensor_data_arn" {
+  description = "Meteo sensor data S3 bucket ARN"
+  value       = aws_s3_bucket.meteo_s3_bucket_sensor_data.arn
 }

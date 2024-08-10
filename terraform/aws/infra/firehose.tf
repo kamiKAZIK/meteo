@@ -1,3 +1,4 @@
+/*
 resource "aws_kinesis_firehose_delivery_stream" "meteo_sensor_readings_kinesis_firehose_delivery_stream" {
   name        = "meteo-sensor-readings"
   destination = "extended_s3"
@@ -27,3 +28,4 @@ resource "aws_kinesis_firehose_delivery_stream" "meteo_sensor_readings_kinesis_f
     }
   }
 }
+*/

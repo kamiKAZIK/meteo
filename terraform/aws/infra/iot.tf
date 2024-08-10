@@ -1,3 +1,4 @@
+/*
 resource "aws_iot_thing" "esp32_iot_thing" {
   name = "esp32-iot-thing"
 }
@@ -78,3 +79,4 @@ resource "aws_iot_topic_rule" "esp32_iot_topic_rule" {
     role_arn = aws_iam_role.meteo_iam_role.arn
   }
 }
+*/
