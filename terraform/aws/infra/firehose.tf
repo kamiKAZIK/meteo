@@ -34,7 +34,7 @@ resource "aws_kinesis_firehose_delivery_stream" "meteo_sensor_readings" {
   name        = "meteo-sensor-readings"
   destination = "extended_s3"
   extended_s3_configuration {
-    role_arn            = aws_iam_role.meteo_data_sink.arn
+    role_arn            = aws_iam_role.meteo_firehose.arn
     bucket_arn          = aws_s3_bucket.meteo_sensor_data.arn
     buffering_size      = 64
     buffering_interval  = 10
