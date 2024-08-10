@@ -76,7 +76,7 @@ resource "aws_iam_policy" "meteo_glue_policy" {
 }
 
 resource "aws_iam_policy" "meteo_firehose_policy" {
-  name        = "meteo-glue"
+  name        = "meteo-firehose"
   policy      = data.aws_iam_policy_document.meteo_firehose_policy_document.json
 }
 
