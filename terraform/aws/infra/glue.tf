@@ -10,6 +10,18 @@ resource "aws_glue_catalog_table" "meteo_sensor_readings" {
     EXTERNAL              = "TRUE"
     "parquet.compression" = "SNAPPY"
   }
+  partition_keys {
+    name = "year"
+    type = "int"
+  }
+  partition_keys {
+    name = "month"
+    type = "int"
+  }
+  partition_keys {
+    name = "month"
+    type = "day"
+  }
   storage_descriptor {
     location      = "s3://${aws_s3_bucket.meteo_sensor_data.bucket}/data"
     input_format  = "org.apache.hadoop.hive.ql.io.parquet.MapredParquetInputFormat"
