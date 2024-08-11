@@ -19,8 +19,8 @@ resource "aws_glue_catalog_table" "meteo_sensor_readings" {
     type = "int"
   }
   partition_keys {
-    name = "month"
-    type = "day"
+    name = "day"
+    type = "int"
   }
   storage_descriptor {
     location      = "s3://${aws_s3_bucket.meteo_sensor_data.bucket}/data"
