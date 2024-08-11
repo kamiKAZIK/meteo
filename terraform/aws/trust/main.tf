@@ -68,7 +68,6 @@ data "aws_iam_policy_document" "tfc_policy" {
 
 resource "aws_iam_policy" "tfc_policy" {
   name        = "tfc-policy"
-  description = "TFC run policy"
   policy = data.aws_iam_policy_document.tfc_policy.json
 }
 
