@@ -34,18 +34,6 @@ resource "aws_glue_catalog_table" "meteo_sensor_readings" {
       }
     }
     columns {
-      name = "year"
-      type = "int"
-    }
-    columns {
-      name = "month"
-      type = "int"
-    }
-    columns {
-      name = "day"
-      type = "int"
-    }
-    columns {
       name = "sensor_id"
       type = "string"
     }
