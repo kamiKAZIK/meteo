@@ -61,7 +61,7 @@ data "aws_iam_policy_document" "meteo_firehose_glue" {
     resources = [
       "arn:aws:glue:eu-central-1:${data.aws_caller_identity.current.account_id}:catalog",
       aws_glue_catalog_database.meteo_sensors.arn,
-      aws_glue_catalog_table.meteo_readings.arn
+      aws_glue_catalog_table.meteo_sensor_readings.arn
     ]
   }
   statement {

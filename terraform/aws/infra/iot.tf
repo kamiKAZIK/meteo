@@ -71,7 +71,7 @@ resource "aws_iot_policy_attachment" "meteo_sensor_esp32" {
 resource "aws_iot_topic_rule" "meteo_sensor_esp32" {
   name        = "meteo-sensor-esp32"
   enabled     = true
-  sql         = "SELECT * FROM '${aws_iot_thing.esp32.default_client_id}/sensor-readings'"
+  sql         = "SELECT * FROM '${aws_iot_thing.meteo_sensor_esp32.default_client_id}/sensor-readings'"
   sql_version = "2016-03-23"
   firehose {
     delivery_stream_name = aws_kinesis_firehose_delivery_stream.meteo_sensor_readings.name
