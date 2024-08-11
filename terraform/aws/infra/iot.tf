@@ -69,7 +69,7 @@ resource "aws_iot_policy_attachment" "meteo_sensor_esp32" {
 }
 
 resource "aws_iot_topic_rule" "meteo_sensor_esp32" {
-  name        = "meteo-_sensor_esp32"
+  name        = "meteo_sensor_esp32"
   enabled     = true
   sql         = "SELECT * FROM '${aws_iot_thing.meteo_sensor_esp32.default_client_id}/sensor-readings'"
   sql_version = "2016-03-23"
