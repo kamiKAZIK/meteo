@@ -18,10 +18,6 @@ resource "aws_glue_catalog_table" "meteo_sensor_readings" {
     name = "month"
     type = "string"
   }
-  partition_keys {
-    name = "day"
-    type = "string"
-  }
   storage_descriptor {
     location      = "s3://${aws_s3_bucket.meteo_sensor_data.bucket}/data"
     input_format  = "org.apache.hadoop.hive.ql.io.parquet.MapredParquetInputFormat"
