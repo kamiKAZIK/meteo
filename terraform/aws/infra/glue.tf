@@ -12,12 +12,15 @@ resource "aws_glue_catalog_table" "meteo_sensor_readings" {
   }
   partition_keys {
     name = "year"
+    type = "string"
   }
   partition_keys {
     name = "month"
+    type = "string"
   }
   partition_keys {
     name = "day"
+    type = "string"
   }
   storage_descriptor {
     location      = "s3://${aws_s3_bucket.meteo_sensor_data.bucket}/data"
