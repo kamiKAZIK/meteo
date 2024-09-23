@@ -4,8 +4,8 @@ resource "aws_kinesis_firehose_delivery_stream" "meteo_sensor_readings" {
   extended_s3_configuration {
     role_arn            = aws_iam_role.meteo_firehose.arn
     bucket_arn          = aws_s3_bucket.meteo_sensor_data.arn
-    buffering_size      = 128
-    buffering_interval  = 300
+    buffering_size      = 64
+    buffering_interval  = 60
     prefix              = "data/year=!{timestamp:yyyy}/month=!{timestamp:MM}/"
     error_output_prefix = "errors/year=!{timestamp:yyyy}/month=!{timestamp:MM}/!{firehose:error-output-type}/"
     data_format_conversion_configuration {
